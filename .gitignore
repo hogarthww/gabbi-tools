@@ -1,0 +1,7 @@
+.frozenenv
+.env
+.tox
+debian
+docs
+src
+dist
