@@ -19,6 +19,7 @@ class BodyResponseHandler(base.ResponseHandler):
     test_key_value = []
 
     def action(self, test, expected, value=None):
+        """Perform exact match test of response body to string or file."""
         expected = test.replace_template(expected)
         msg = None
         if expected.startswith('<@'):

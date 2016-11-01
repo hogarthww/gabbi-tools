@@ -21,6 +21,8 @@ setuptools.setup(
         'gabbi',
     ],
 
+    scripts=['src/tests/gabbi-tools-tests.sh'],
+
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Programming Language :: Python',
