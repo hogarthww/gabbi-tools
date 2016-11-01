@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contributing &mdash; gabbi-tools 0.1.0.dev0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="gabbi-tools 0.1.0.dev0 documentation" href="index.html"/>
+        <link rel="next" title="Credits" href="authors.html"/>
+        <link rel="prev" title="gabbi_tools.handlers module" href="gabbi_tools.handlers.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> gabbi-tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">gabbi-tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical_details.html">Technical Details</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#bugs">Bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tips">Tips</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tdd">TDD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debian-package">Debian Package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#coding-standards">Coding Standards</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">gabbi-tools</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Contributing</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/contributing.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<p>The source code is located here:</p>
+<blockquote>
+<div><a class="reference external" href="https://github.hogarthww.com/zonzaltd/gabbi-tools">https://github.hogarthww.com/zonzaltd/gabbi-tools</a></div></blockquote>
+<p>If you have minor code quality changes, please just submit a PR! If you have
+new features or bug fixes, please follow the instructions below.</p>
+<div class="section" id="bugs">
+<h2>Bugs<a class="headerlink" href="#bugs" title="Permalink to this headline">¶</a></h2>
+<p>Please report bugs on our bug tracker: <a class="reference external" href="https://hogarthww.atlassian.net/">https://hogarthww.atlassian.net/</a></p>
+<p>Please include:</p>
+<ul class="simple">
+<li>OS name and version.</li>
+<li>Details about your test setup/settings.</li>
+<li>Steps to reproduce the issue.</li>
+</ul>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p><cite>gabbi-tools</cite> documentation is built via docstrings. You can build the
+documentation with:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>make env
+make docs
+</pre></div>
+</div>
+<p>It should build the docs and open them in your default browser.</p>
+</div>
+<div class="section" id="get-started">
+<h2>Get Started!<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h2>
+<p>Getting started is pretty standard:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># CLONE THE CODE REPOSITORY</span>
+git clone https://github.hogarthww.com/zonzaltd/gabbi-tools
+<span class="nb">cd</span> gabbi-tools
+
+<span class="c1"># CREATE A VIRTUALENV AND INSTALL DEV DEPENDENCIES</span>
+make env
+
+<span class="c1"># CREATE A BRANCH FOR YOUR NEW FEATURE</span>
+git checkout -b feature/my-cool-feature
+<span class="c1"># ... now you can make your changes locally.</span>
+
+<span class="c1"># RUN TESTS AND LINTING TO MAKE SURE THEY PASS</span>
+make test-all
+
+<span class="c1"># COMMIT YOUR CHANGES AND PUSH YOUR BRANCH TO GITHUB</span>
+git add .
+git commit -m <span class="s2">&quot;Your detailed description of your changes.&quot;</span>
+git push origin feature/my-cool-feature
+
+<span class="c1"># SUBMIT A PULL REQUEST THROUGH THE GITHUB WEBSITE</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pull-request-guidelines">
+<h2>Pull Request Guidelines<a class="headerlink" href="#pull-request-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>Your pull requests must contain adequate tests and documentation.</p>
+<p>Also, please use the PR template located here: <a class="reference external" href="https://github.hogarthww.com/mikejarrett/pull-request-template">https://github.hogarthww.com/mikejarrett/pull-request-template</a></p>
+</div>
+<div class="section" id="tips">
+<h2>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tdd">
+<h3>TDD<a class="headerlink" href="#tdd" title="Permalink to this headline">¶</a></h3>
+<p>Doing TDD is pretty easy in this repository. At the moment the &#8220;fast&#8221; tests run
+in under 1 second:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>make test-fast
+make test-fast <span class="nv">TEST_PATH</span><span class="o">=</span>./src/tests/test_api.py
+</pre></div>
+</div>
+<p>You can use <code class="docutils literal"><span class="pre">rerun</span></code> to run the tests for every change:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install rerun
+rerun <span class="s2">&quot;make test-fast&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="debian-package">
+<h3>Debian Package<a class="headerlink" href="#debian-package" title="Permalink to this headline">¶</a></h3>
+<p>If you are working on the Debian package, you can test it out with an empty
+ubuntu:14.04 docker container. Simply run:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>make dpkg
+make testbed
+...
+dpkg -i /testbed/dist/&lt;mypackage&gt;.deb
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="coding-standards">
+<h2>Coding Standards<a class="headerlink" href="#coding-standards" title="Permalink to this headline">¶</a></h2>
+<p>This is a distilled version of the coding standards originally drafted by Vlad
+Mettler in <a class="reference external" href="https://wiki.hogarthww.prv/display/SSAS/Coding">https://wiki.hogarthww.prv/display/SSAS/Coding</a>.</p>
+<p>Things that will be enforced by this repos automation (Makefile etc.):</p>
+<ul class="simple">
+<li>Abide by PEP8 and PEP257</li>
+<li>Unit tests and test coverage</li>
+<li>Docstrings</li>
+</ul>
+<p>Things that will NOT be enforced by this repos automation and need to be
+enforced by humans (e.g. via code reviews):</p>
+<ul class="simple">
+<li>General principles:
+- <a class="reference external" href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)">DRY</a>
+- <a class="reference external" href="https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)">SOLID</a>
+- <a class="reference external" href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="authors.html" class="btn btn-neutral float-right" title="Credits" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gabbi_tools.handlers.html" class="btn btn-neutral" title="gabbi_tools.handlers module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015+, Tom Viner.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0.dev0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
