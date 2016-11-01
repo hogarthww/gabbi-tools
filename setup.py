@@ -20,12 +20,6 @@ setuptools.setup(
     install_requires=[
         'hww-config-manager',
     ],
-    extras_require={
-        'production': [
-            'gunicorn',
-            'newrelic',
-        ],
-    },
 
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
@@ -35,9 +29,4 @@ setuptools.setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
     ],
-    entry_points={
-        'console_scripts': [
-            'gabbi-tools = gabbi_tools.example:cli',
-        ],
-    }
 )
