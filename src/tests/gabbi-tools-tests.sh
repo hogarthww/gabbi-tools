@@ -1,4 +1,7 @@
 #!/bin/bash
 
+# Within Yaml test runs, Gabbi's <@filename syntax insists on only reading
+# files from the directory the test run is performed from.
 cd src/tests/
-gabbi-run --response-handler gabbi_tools.handlers:BodyResponseHandler -- example.yaml
+
+gabbi-run --response-handler gabbi_tools -- *.yaml
