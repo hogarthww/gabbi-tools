@@ -8,11 +8,13 @@ class BodyResponseHandler(base.ResponseHandler):
 
     Accepts <@filename to compare response to a local file.
 
-    response_body:
-        - entire response body must match this string
+    .. code::
 
-    response_body:
-        - <@image.jpg
+        response_body:
+            - entire response body must match this string
+
+        response_body:
+            - <@image.jpg
     """
 
     test_key_suffix = 'body'
