@@ -1,0 +1,15 @@
+# ------------------------------------------------------------------------- #
+# DEBIAN PACKAGE TRIGGERS FILE                                              #
+#                                                                           #
+# This file contains triggers for the gabbi-tools package. For    #
+# more information on triggers, please run `man deb-triggers`.              #
+# ------------------------------------------------------------------------- #
+
+
+# Register interest in Python interpreter changes (Python 3 for now); and
+# don't make the Python package dependent on the virtualenv package
+# processing (noawait)
+interest-noawait /usr/bin/python3.4
+
+# Also provide a symbolic trigger for all dh-virtualenv packages
+interest dh-virtualenv-interpreter-update

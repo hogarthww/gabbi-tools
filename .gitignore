@@ -49,9 +49,18 @@ coverage.xml
 
 # Django stuff:
 *.log
+db.sqlite3
 
 # Sphinx documentation
 docs/_build/
 
 # PyBuilder
 target/
+
+# Virtualenv
+.env/
+.frozenenv/
+.releasetools/
+debian/gabbi-tools/
+debian/gabbi-tools.debhelper.log
+debian/files
