@@ -18,7 +18,7 @@ setuptools.setup(
     zip_safe=False,
 
     install_requires=[
-        'hww-config-manager',
+        'gabbi',
     ],
 
     classifiers=[

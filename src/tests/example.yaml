@@ -1,0 +1,6 @@
+tests:
+  - name: check image
+    GET: https://i.imgur.com/XRRI431s.jpg
+    status: 200
+    response_body:
+        - <@buzz.jpg
