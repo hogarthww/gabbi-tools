@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="gabbi-tools",
-    version="0.1.0.dev0",
+    version='0.2.0',
     url="https://github.hogarthww.com/zonzaltd/gabbi-tools",
 
     author="Tom Viner",
