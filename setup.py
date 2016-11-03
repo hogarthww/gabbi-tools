@@ -19,9 +19,10 @@ setuptools.setup(
 
     install_requires=[
         'gabbi',
+        'xmltodict',
     ],
 
-    scripts=['src/tests/gabbi-tools-tests.sh'],
+    scripts=['src/tests/gabbi-tools-tests'],
 
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
