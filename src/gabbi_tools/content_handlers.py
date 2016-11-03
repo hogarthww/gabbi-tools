@@ -18,6 +18,8 @@ class XMLHandler(JSONHandler):
       content-type is XML.
     * A ``response_xml_paths`` response handler is added.
     * JSONPaths in $RESPONSE substitutions are supported.
+
+    Note: the order of sibling tags is not retained.
     """
 
     test_key_suffix = 'xml_paths'
@@ -27,7 +29,8 @@ class XMLHandler(JSONHandler):
     def accepts(content_type):
         content_type = content_type.split(';', 1)[0].strip()
         return (content_type.endswith('+xml') or
-                content_type.startswith('application/xml'))
+                content_type.startswith('application/xml') or
+                content_type.startswith('text/xml'))
 
     @staticmethod
     def dumps(data, pretty=False):

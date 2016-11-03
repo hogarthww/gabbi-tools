@@ -4,3 +4,10 @@ tests:
     status: 200
     response_body:
         - <@buzz.jpg
+
+  - name: check against different image (deliberate xfail)
+    xfail: true
+    GET: https://i.imgur.com/XRRI431s.jpg
+    status: 200
+    response_body:
+        - <@not-buzz.jpg
