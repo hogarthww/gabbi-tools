@@ -22,7 +22,10 @@ setuptools.setup(
         'xmltodict',
     ],
 
-    scripts=['src/tests/gabbi-tools-tests'],
+    scripts=[
+        'bin/gabbi-tools-tests',
+        'bin/gabbi-tools-run',
+    ],
 
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
