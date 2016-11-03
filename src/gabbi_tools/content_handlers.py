@@ -29,10 +29,6 @@ class XMLHandler(JSONHandler):
         return (content_type.endswith('+xml') or
                 content_type.startswith('application/xml'))
 
-    @classmethod
-    def replacer(cls, response_data, match):
-        return str(cls.extract_json_path_value(response_data, match))
-
     @staticmethod
     def dumps(data, pretty=False):
         xml_string = xmltodict.unparse(data)
@@ -43,4 +39,5 @@ class XMLHandler(JSONHandler):
 
     @staticmethod
     def loads(data):
+        # round trip through json to replace OrderedDict with dict
         return json.loads(json.dumps(xmltodict.parse(data)))

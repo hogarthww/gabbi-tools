@@ -40,6 +40,3 @@ Tests
 .. code:: bash
 
     $ tox
-
-    # which runs
-    $ gabbi-tools-tests
