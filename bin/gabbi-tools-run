@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# gabbi-run wrapper that applies the handlers from this package.
+
+gabbi-run --response-handler gabbi_tools "$@"

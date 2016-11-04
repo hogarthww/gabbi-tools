@@ -1,0 +1,15 @@
+verbose: &verbose_ref
+  # change here to change for all uses of `*verbose_ref`
+  true
+
+tests:
+  - name: Example using YAML references
+    verbose: *verbose_ref
+    GET: https://httpbin.org/user-agent
+    response_strings:
+      - gabbi
+
+  - name: Further example using YAML references
+    verbose: *verbose_ref
+    GET: https://httpbin.org/headers
+    status: 200

@@ -4,4 +4,4 @@
 # files from the directory the test run is performed from.
 cd src/tests/
 
-gabbi-run --response-handler gabbi_tools -- *.yaml
+gabbi-tools-run -- *.yaml
