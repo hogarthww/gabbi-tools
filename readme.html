@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>gabbi-tools &mdash; gabbi-tools 0.1.0.dev0 documentation</title>
+  <title>gabbi-tools &mdash; gabbi-tools 0.2.1.dev0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="gabbi-tools 0.1.0.dev0 documentation" href="index.html"/>
+    <link rel="top" title="gabbi-tools 0.2.1.dev0 documentation" href="index.html"/>
         <link rel="next" title="Usage" href="usage.html"/>
         <link rel="prev" title="ZONZA gabbi-tools service" href="index.html"/> 
 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.1.0.dev0
+                0.2.1.dev0
               </div>
             
           
@@ -86,7 +86,9 @@
             
                 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">gabbi-tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation-and-usage">Installation and Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tests">Tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
@@ -146,20 +148,35 @@
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#gabbi-tools" id="id1">gabbi-tools</a><ul>
-<li><a class="reference internal" href="#installation-and-usage" id="id2">Installation and Usage</a></li>
+<li><a class="reference internal" href="#installation" id="id2">Installation</a></li>
+<li><a class="reference internal" href="#usage" id="id3">Usage</a></li>
+<li><a class="reference internal" href="#tests" id="id4">Tests</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="installation-and-usage">
-<h2><a class="toc-backref" href="#id2">Installation and Usage</a><a class="headerlink" href="#installation-and-usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installation">
+<h2><a class="toc-backref" href="#id2">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Installation is simple:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ # Install via pip
-$ pip install gabbi-tools
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ pip install gabbi-tools
 </pre></div>
 </div>
-<p>Usage is simple:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ gabbi-run --response-handler gabbi_tools -- *.yaml
+</div>
+<div class="section" id="usage">
+<h2><a class="toc-backref" href="#id3">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>To pick out individual handlers:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ gabbi-run --response-handler gabbi_tools:XMLHandler -- *.yaml
+$ gabbi-run --response-handler gabbi_tools:BodyResponseHandler -- *.yaml
+</pre></div>
+</div>
+<p>We provide a convenience command that applies all handlers in this package:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ gabbi-tools-run -- *.yaml
+</pre></div>
+</div>
+</div>
+<div class="section" id="tests">
+<h2><a class="toc-backref" href="#id4">Tests</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ tox
 </pre></div>
 </div>
 </div>
@@ -206,7 +223,7 @@ $ pip install gabbi-tools
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.0.dev0',
+            VERSION:'0.2.1.dev0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -6,7 +6,8 @@ Submodules
 
 .. toctree::
 
-   gabbi_tools.handlers
+   gabbi_tools.content_handlers
+   gabbi_tools.response_handlers
 
 Module contents
 ---------------
