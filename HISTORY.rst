@@ -3,7 +3,7 @@
 History
 -------
 
-0.2.1 (unreleased)
+0.3.0 (2016-11-04)
 ++++++++++++++++++
 
 - Add XMLHandler.
