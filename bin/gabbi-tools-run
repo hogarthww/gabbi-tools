@@ -2,4 +2,4 @@
 
 # gabbi-run wrapper that applies the handlers from this package.
 
-gabbi-run --response-handler gabbi_tools "$@"
+gabbi-run --response-handler gabbi_tools --failfast "$@"
