@@ -1,0 +1,34 @@
+tests:
+  - name: read xml with single child tag
+    desc: |
+      Read an XML doc with a single tag. See https://gist.github.com/tomviner/6e1eb29a4cecde59b8a852568c86d189
+      Using rawgit.com to ensure we get an xml content type.
+    GET: http://rawgit.com/tomviner/6e1eb29a4cecde59b8a852568c86d189/raw/543d6ed81b052b7accf1898a86e1aae0734a64ab/single.xml
+    request_headers:
+        accept: application/xml
+    status: 200
+    verbose: true
+    response_xml_paths:
+      $.slideshow[0].slide[0]['#text'][0]: text-slide1
+
+# <?xml version="1.0" encoding="UTF-8"?>
+# <slideshow>
+#   <slide attr="slide1">text-slide1</slide>
+# </slideshow>
+#
+# gets converted to this json structure:
+#
+# {
+#     "slideshow": [
+#         {
+#             "slide": [
+#                 {
+#                     "#text": [
+#                         "text-slide1"
+#                     ],
+#                     "@attr": "slide1"
+#                 }
+#             ]
+#         }
+#     ]
+# }
