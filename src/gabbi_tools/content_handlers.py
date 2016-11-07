@@ -1,11 +1,11 @@
 """XML-related content handling."""
 
 import json
+from xml.dom.minidom import parseString
 
 from gabbi.handlers.jsonhandler import JSONHandler
 
 import xmltodict
-from xml.dom.minidom import parseString
 
 
 class XMLHandler(JSONHandler):
