@@ -3,7 +3,7 @@
 History
 -------
 
-0.3.1 (unreleased)
+0.4.0 (2016-11-07)
 ++++++++++++++++++
 
 - Make --failfast the default for gabbi-tools-run.
