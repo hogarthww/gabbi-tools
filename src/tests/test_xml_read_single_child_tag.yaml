@@ -10,25 +10,3 @@ tests:
     verbose: true
     response_xml_paths:
       $.slideshow[0].slide[0]['#text'][0]: text-slide1
-
-# <?xml version="1.0" encoding="UTF-8"?>
-# <slideshow>
-#   <slide attr="slide1">text-slide1</slide>
-# </slideshow>
-#
-# gets converted to this json structure:
-#
-# {
-#     "slideshow": [
-#         {
-#             "slide": [
-#                 {
-#                     "#text": [
-#                         "text-slide1"
-#                     ],
-#                     "@attr": "slide1"
-#                 }
-#             ]
-#         }
-#     ]
-# }

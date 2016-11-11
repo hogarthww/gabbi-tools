@@ -21,6 +21,110 @@ class XMLHandler(JSONHandler):
     * JSONPaths in $RESPONSE substitutions are supported.
 
     Note: the order of sibling tags is not retained.
+
+    Simple example:
+
+    .. code::
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <slideshow>
+          <slide attr="slide1">text-slide1</slide>
+        </slideshow>
+
+    gets converted to this json structure:
+
+    .. code::
+
+        {
+            "slideshow": [
+                {
+                    "slide": [
+                        {
+                            "#text": [
+                                "text-slide1"
+                            ],
+                            "@attr": "slide1"
+                        }
+                    ]
+                }
+            ]
+        }
+
+    Expanded example:
+
+    .. code::
+
+        <?xml version="1.0"?>
+        <!-- A SAMPLE set of slides -->
+        <slideshow title="Sample Slide Show" date="Date of publication" author="Yours Truly">
+          <!-- TITLE SLIDE -->
+          <slide type="all">
+            <title>Wake up to WonderWidgets!</title>
+          </slide>
+          <!-- OVERVIEW -->
+          <slide type="all">
+            <title>Overview</title>
+            <item>
+                Why
+                <em>WonderWidgets</em>
+                are great
+            </item>
+            <item/>
+            <item>
+                Who
+                <em>buys</em>
+                WonderWidgets
+            </item>
+          </slide>
+        </slideshow>
+
+    gets converted to this json structure:
+
+    .. code::
+
+        {
+            "slideshow": [
+                {
+                    "@author": "Yours Truly",
+                    "@date": "Date of publication",
+                    "@title": "Sample Slide Show",
+                    "slide": [
+                        {
+                            "@type": "all",
+                            "title": [
+                                "Wake up to WonderWidgets!"
+                            ]
+                        },
+                        {
+                            "@type": "all",
+                            "item": [
+                                {
+                                    "#text": [
+                                        "Why  are great"
+                                    ],
+                                    "em": [
+                                        "WonderWidgets"
+                                    ]
+                                },
+                                null,
+                                {
+                                    "#text": [
+                                        "Who  WonderWidgets"
+                                    ],
+                                    "em": [
+                                        "buys"
+                                    ]
+                                }
+                            ],
+                            "title": [
+                                "Overview"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+
     """
 
     test_key_suffix = 'xml_paths'
