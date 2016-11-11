@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>gabbi_tools.content_handlers module &mdash; gabbi-tools 0.3.1.dev0 documentation</title>
+  <title>gabbi_tools.content_handlers module &mdash; gabbi-tools 0.4.1.dev0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="gabbi-tools 0.3.1.dev0 documentation" href="index.html"/>
+    <link rel="top" title="gabbi-tools 0.4.1.dev0 documentation" href="index.html"/>
         <link rel="up" title="gabbi_tools package" href="gabbi_tools.html"/>
         <link rel="next" title="gabbi_tools.response_handlers module" href="gabbi_tools.response_handlers.html"/>
         <link rel="prev" title="gabbi_tools package" href="gabbi_tools.html"/> 
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.3.1.dev0
+                0.4.1.dev0
               </div>
             
           
@@ -85,20 +85,10 @@
           
             
             
-                <ul class="current">
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="readme.html">gabbi-tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="technical_details.html">Technical Details</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="technical_details.html#auto-generated-api-docs">Auto-generated API docs</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="gabbi_tools.html">gabbi_tools package</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="gabbi_tools.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gabbi_tools.html#module-contents">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="technical_details.html">Technical Details</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
@@ -150,8 +140,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="gabbi-tools-content-handlers-module">
-<h1>gabbi_tools.content_handlers module<a class="headerlink" href="#gabbi-tools-content-handlers-module" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-gabbi_tools.content_handlers">
+<span id="gabbi-tools-content-handlers-module"></span><h1>gabbi_tools.content_handlers module<a class="headerlink" href="#module-gabbi_tools.content_handlers" title="Permalink to this headline">¶</a></h1>
+<p>XML-related content handling.</p>
+<dl class="class">
+<dt id="gabbi_tools.content_handlers.XMLHandler">
+<em class="property">class </em><code class="descclassname">gabbi_tools.content_handlers.</code><code class="descname">XMLHandler</code><a class="reference internal" href="_modules/gabbi_tools/content_handlers.html#XMLHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gabbi_tools.content_handlers.XMLHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">gabbi.handlers.jsonhandler.JSONHandler</span></code></p>
+<p>A ContentHandler for XML</p>
+<ul class="simple">
+<li>Structured test <code class="docutils literal"><span class="pre">data</span></code> is turned into XML when request
+content-type is XML.</li>
+<li>Response bodies that are XML strings are made into Python
+data on the test <code class="docutils literal"><span class="pre">response_data</span></code> attribute when the response
+content-type is XML.</li>
+<li>A <code class="docutils literal"><span class="pre">response_xml_paths</span></code> response handler is added.</li>
+<li>JSONPaths in $RESPONSE substitutions are supported.</li>
+</ul>
+<p>Note: the order of sibling tags is not retained.</p>
+<dl class="staticmethod">
+<dt id="gabbi_tools.content_handlers.XMLHandler.accepts">
+<em class="property">static </em><code class="descname">accepts</code><span class="sig-paren">(</span><em>content_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gabbi_tools/content_handlers.html#XMLHandler.accepts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gabbi_tools.content_handlers.XMLHandler.accepts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="gabbi_tools.content_handlers.XMLHandler.dumps">
+<em class="property">static </em><code class="descname">dumps</code><span class="sig-paren">(</span><em>data</em>, <em>pretty=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gabbi_tools/content_handlers.html#XMLHandler.dumps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gabbi_tools.content_handlers.XMLHandler.dumps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="gabbi_tools.content_handlers.XMLHandler.loads">
+<em class="property">static </em><code class="descname">loads</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gabbi_tools/content_handlers.html#XMLHandler.loads"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gabbi_tools.content_handlers.XMLHandler.loads" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gabbi_tools.content_handlers.XMLHandler.test_key_suffix">
+<code class="descname">test_key_suffix</code><em class="property"> = 'xml_paths'</em><a class="headerlink" href="#gabbi_tools.content_handlers.XMLHandler.test_key_suffix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gabbi_tools.content_handlers.XMLHandler.test_key_value">
+<code class="descname">test_key_value</code><em class="property"> = {}</em><a class="headerlink" href="#gabbi_tools.content_handlers.XMLHandler.test_key_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -195,7 +228,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.3.1.dev0',
+            VERSION:'0.4.1.dev0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
