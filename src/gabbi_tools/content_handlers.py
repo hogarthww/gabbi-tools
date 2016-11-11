@@ -1,6 +1,7 @@
 """XML-related content handling."""
 
 import json
+from collections import defaultdict
 from xml.dom.minidom import parseString
 
 from gabbi.handlers.jsonhandler import JSONHandler
@@ -27,6 +28,7 @@ class XMLHandler(JSONHandler):
 
     @staticmethod
     def accepts(content_type):
+        """Detect XML content from the content type header."""
         content_type = content_type.split(';', 1)[0].strip()
         return (content_type.endswith('+xml') or
                 content_type.startswith('application/xml') or
@@ -34,6 +36,7 @@ class XMLHandler(JSONHandler):
 
     @staticmethod
     def dumps(data, pretty=False):
+        """Convert Python data structure into bytes."""
         xml_string = xmltodict.unparse(data)
         if pretty:
             return parseString(xml_string).toprettyxml()
@@ -42,5 +45,13 @@ class XMLHandler(JSONHandler):
 
     @staticmethod
     def loads(data):
-        # round trip through json to replace OrderedDict with dict
-        return json.loads(json.dumps(xmltodict.parse(data)))
+        """Parse bytes into Python data structure."""
+
+        def dict_constructor(*args, **kwargs):
+            """Ensure single child tags replicate sibling tag behaviour."""
+            return defaultdict(list, *args, **kwargs)
+
+        # See github.com/martinblech/xmltodict/issues/14#issuecomment-13039037
+        data_dict = xmltodict.parse(data, dict_constructor=dict_constructor)
+        # round trip through json to replace defaultdict with dict
+        return json.loads(json.dumps(data_dict))

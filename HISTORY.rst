@@ -6,7 +6,8 @@ History
 0.4.1 (unreleased)
 ++++++++++++++++++
 
-- Nothing changed yet.
+- Implement workaround so parsing XML with a single child tag acts the same
+    as multiple siblings. Now both give a list.
 
 
 0.4.0 (2016-11-07)
