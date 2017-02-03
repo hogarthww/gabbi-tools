@@ -115,7 +115,7 @@ initialize-gh-pages:
 		git checkout --orphan gh-pages; \
 		git rm --cached -r .; \
 		touch .nojekyll; \
-		curl -Lkf https://github.hogarthww.com/raw/chrisdcunha/gitignore/master/Gh-Pages.gitignore?token=AAAAVpi46TBJxrDQ5KpwdVwJFJNBJgTCks5YIcvDwA%3D%3D -o .gitignore; \
+		curl -Lkf https://raw.githubusercontent.com/hogarthww/gitignore/master/Gh-Pages.gitignore -o .gitignore; \
 		git add .nojekyll .gitignore; \
 		git commit --message="Initial Commit"; \
 		git clean -df .; \
