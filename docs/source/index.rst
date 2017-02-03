@@ -5,7 +5,7 @@ ZONZA gabbi-tools service
 Quick links
 -----------
 
-Code: https://github.hogarthww.com/zonzaltd/gabbi-tools
+Code: https://github.com/hogarthww/gabbi-tools
 
 
 Contents

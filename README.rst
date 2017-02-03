@@ -3,7 +3,7 @@ gabbi-tools
 
 Helpers for working with the Gabbi API testing framework.
 
-Documentation: https://github.hogarthww.com/pages/zonzaltd/gabbi-tools
+Documentation: https://hogarthww.github.io/gabbi-tools/
 
 .. contents:: Table of Contents
 
