@@ -140,6 +140,7 @@
 <span></span><span class="sd">&quot;&quot;&quot;XML-related content handling.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">xml.dom.minidom</span> <span class="k">import</span> <span class="n">parseString</span>
 
 <span class="kn">from</span> <span class="nn">gabbi.handlers.jsonhandler</span> <span class="k">import</span> <span class="n">JSONHandler</span>
@@ -159,6 +160,110 @@
 <span class="sd">    * JSONPaths in $RESPONSE substitutions are supported.</span>
 
 <span class="sd">    Note: the order of sibling tags is not retained.</span>
+
+<span class="sd">    Simple example:</span>
+
+<span class="sd">    .. code::</span>
+
+<span class="sd">        &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="sd">        &lt;slideshow&gt;</span>
+<span class="sd">          &lt;slide attr=&quot;slide1&quot;&gt;text-slide1&lt;/slide&gt;</span>
+<span class="sd">        &lt;/slideshow&gt;</span>
+
+<span class="sd">    gets converted to this json structure:</span>
+
+<span class="sd">    .. code::</span>
+
+<span class="sd">        {</span>
+<span class="sd">            &quot;slideshow&quot;: [</span>
+<span class="sd">                {</span>
+<span class="sd">                    &quot;slide&quot;: [</span>
+<span class="sd">                        {</span>
+<span class="sd">                            &quot;#text&quot;: [</span>
+<span class="sd">                                &quot;text-slide1&quot;</span>
+<span class="sd">                            ],</span>
+<span class="sd">                            &quot;@attr&quot;: &quot;slide1&quot;</span>
+<span class="sd">                        }</span>
+<span class="sd">                    ]</span>
+<span class="sd">                }</span>
+<span class="sd">            ]</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Expanded example:</span>
+
+<span class="sd">    .. code::</span>
+
+<span class="sd">        &lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="sd">        &lt;!-- A SAMPLE set of slides --&gt;</span>
+<span class="sd">        &lt;slideshow title=&quot;Sample Slide Show&quot; date=&quot;Date of publication&quot; author=&quot;Yours Truly&quot;&gt;</span>
+<span class="sd">          &lt;!-- TITLE SLIDE --&gt;</span>
+<span class="sd">          &lt;slide type=&quot;all&quot;&gt;</span>
+<span class="sd">            &lt;title&gt;Wake up to WonderWidgets!&lt;/title&gt;</span>
+<span class="sd">          &lt;/slide&gt;</span>
+<span class="sd">          &lt;!-- OVERVIEW --&gt;</span>
+<span class="sd">          &lt;slide type=&quot;all&quot;&gt;</span>
+<span class="sd">            &lt;title&gt;Overview&lt;/title&gt;</span>
+<span class="sd">            &lt;item&gt;</span>
+<span class="sd">                Why</span>
+<span class="sd">                &lt;em&gt;WonderWidgets&lt;/em&gt;</span>
+<span class="sd">                are great</span>
+<span class="sd">            &lt;/item&gt;</span>
+<span class="sd">            &lt;item/&gt;</span>
+<span class="sd">            &lt;item&gt;</span>
+<span class="sd">                Who</span>
+<span class="sd">                &lt;em&gt;buys&lt;/em&gt;</span>
+<span class="sd">                WonderWidgets</span>
+<span class="sd">            &lt;/item&gt;</span>
+<span class="sd">          &lt;/slide&gt;</span>
+<span class="sd">        &lt;/slideshow&gt;</span>
+
+<span class="sd">    gets converted to this json structure:</span>
+
+<span class="sd">    .. code::</span>
+
+<span class="sd">        {</span>
+<span class="sd">            &quot;slideshow&quot;: [</span>
+<span class="sd">                {</span>
+<span class="sd">                    &quot;@author&quot;: &quot;Yours Truly&quot;,</span>
+<span class="sd">                    &quot;@date&quot;: &quot;Date of publication&quot;,</span>
+<span class="sd">                    &quot;@title&quot;: &quot;Sample Slide Show&quot;,</span>
+<span class="sd">                    &quot;slide&quot;: [</span>
+<span class="sd">                        {</span>
+<span class="sd">                            &quot;@type&quot;: &quot;all&quot;,</span>
+<span class="sd">                            &quot;title&quot;: [</span>
+<span class="sd">                                &quot;Wake up to WonderWidgets!&quot;</span>
+<span class="sd">                            ]</span>
+<span class="sd">                        },</span>
+<span class="sd">                        {</span>
+<span class="sd">                            &quot;@type&quot;: &quot;all&quot;,</span>
+<span class="sd">                            &quot;item&quot;: [</span>
+<span class="sd">                                {</span>
+<span class="sd">                                    &quot;#text&quot;: [</span>
+<span class="sd">                                        &quot;Why  are great&quot;</span>
+<span class="sd">                                    ],</span>
+<span class="sd">                                    &quot;em&quot;: [</span>
+<span class="sd">                                        &quot;WonderWidgets&quot;</span>
+<span class="sd">                                    ]</span>
+<span class="sd">                                },</span>
+<span class="sd">                                null,</span>
+<span class="sd">                                {</span>
+<span class="sd">                                    &quot;#text&quot;: [</span>
+<span class="sd">                                        &quot;Who  WonderWidgets&quot;</span>
+<span class="sd">                                    ],</span>
+<span class="sd">                                    &quot;em&quot;: [</span>
+<span class="sd">                                        &quot;buys&quot;</span>
+<span class="sd">                                    ]</span>
+<span class="sd">                                }</span>
+<span class="sd">                            ],</span>
+<span class="sd">                            &quot;title&quot;: [</span>
+<span class="sd">                                &quot;Overview&quot;</span>
+<span class="sd">                            ]</span>
+<span class="sd">                        }</span>
+<span class="sd">                    ]</span>
+<span class="sd">                }</span>
+<span class="sd">            ]</span>
+<span class="sd">        }</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">test_key_suffix</span> <span class="o">=</span> <span class="s1">&#39;xml_paths&#39;</span>
@@ -166,6 +271,7 @@
 
     <span class="nd">@staticmethod</span>
 <div class="viewcode-block" id="XMLHandler.accepts"><a class="viewcode-back" href="../../gabbi_tools.content_handlers.html#gabbi_tools.content_handlers.XMLHandler.accepts">[docs]</a>    <span class="k">def</span> <span class="nf">accepts</span><span class="p">(</span><span class="n">content_type</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Detect XML content from the content type header.&quot;&quot;&quot;</span>
         <span class="n">content_type</span> <span class="o">=</span> <span class="n">content_type</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">content_type</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;+xml&#39;</span><span class="p">)</span> <span class="ow">or</span>
                 <span class="n">content_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;application/xml&#39;</span><span class="p">)</span> <span class="ow">or</span>
@@ -173,6 +279,7 @@
 
     <span class="nd">@staticmethod</span>
 <div class="viewcode-block" id="XMLHandler.dumps"><a class="viewcode-back" href="../../gabbi_tools.content_handlers.html#gabbi_tools.content_handlers.XMLHandler.dumps">[docs]</a>    <span class="k">def</span> <span class="nf">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pretty</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert Python data structure into bytes.&quot;&quot;&quot;</span>
         <span class="n">xml_string</span> <span class="o">=</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">unparse</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">pretty</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">parseString</span><span class="p">(</span><span class="n">xml_string</span><span class="p">)</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">()</span>
@@ -181,8 +288,16 @@
 
     <span class="nd">@staticmethod</span>
 <div class="viewcode-block" id="XMLHandler.loads"><a class="viewcode-back" href="../../gabbi_tools.content_handlers.html#gabbi_tools.content_handlers.XMLHandler.loads">[docs]</a>    <span class="k">def</span> <span class="nf">loads</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-        <span class="c1"># round trip through json to replace OrderedDict with dict</span>
-        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span></div></div>
+        <span class="sd">&quot;&quot;&quot;Parse bytes into Python data structure.&quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">dict_constructor</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;Ensure single child tags replicate sibling tag behaviour.&quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># See github.com/martinblech/xmltodict/issues/14#issuecomment-13039037</span>
+        <span class="n">data_dict</span> <span class="o">=</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dict_constructor</span><span class="o">=</span><span class="n">dict_constructor</span><span class="p">)</span>
+        <span class="c1"># round trip through json to replace defaultdict with dict</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data_dict</span><span class="p">))</span></div></div>
 </pre></div>
 
            </div>

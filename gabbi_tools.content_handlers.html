@@ -158,20 +158,118 @@ content-type is XML.</li>
 <li>JSONPaths in $RESPONSE substitutions are supported.</li>
 </ul>
 <p>Note: the order of sibling tags is not retained.</p>
+<p>Simple example:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;slideshow&gt;
+  &lt;slide attr=&quot;slide1&quot;&gt;text-slide1&lt;/slide&gt;
+&lt;/slideshow&gt;
+</pre></div>
+</div>
+<p>gets converted to this json structure:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;slideshow&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;slide&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;#text&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="s2">&quot;text-slide1&quot;</span>
+                    <span class="p">],</span>
+                    <span class="s2">&quot;@attr&quot;</span><span class="p">:</span> <span class="s2">&quot;slide1&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Expanded example:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!-- A SAMPLE set of slides --&gt;
+&lt;slideshow title=&quot;Sample Slide Show&quot; date=&quot;Date of publication&quot; author=&quot;Yours Truly&quot;&gt;
+  &lt;!-- TITLE SLIDE --&gt;
+  &lt;slide type=&quot;all&quot;&gt;
+    &lt;title&gt;Wake up to WonderWidgets!&lt;/title&gt;
+  &lt;/slide&gt;
+  &lt;!-- OVERVIEW --&gt;
+  &lt;slide type=&quot;all&quot;&gt;
+    &lt;title&gt;Overview&lt;/title&gt;
+    &lt;item&gt;
+        Why
+        &lt;em&gt;WonderWidgets&lt;/em&gt;
+        are great
+    &lt;/item&gt;
+    &lt;item/&gt;
+    &lt;item&gt;
+        Who
+        &lt;em&gt;buys&lt;/em&gt;
+        WonderWidgets
+    &lt;/item&gt;
+  &lt;/slide&gt;
+&lt;/slideshow&gt;
+</pre></div>
+</div>
+<p>gets converted to this json structure:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;slideshow&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;@author&quot;</span><span class="p">:</span> <span class="s2">&quot;Yours Truly&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;@date&quot;</span><span class="p">:</span> <span class="s2">&quot;Date of publication&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;@title&quot;</span><span class="p">:</span> <span class="s2">&quot;Sample Slide Show&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;slide&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;@type&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="s2">&quot;Wake up to WonderWidgets!&quot;</span>
+                    <span class="p">]</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;@type&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;#text&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                <span class="s2">&quot;Why  are great&quot;</span>
+                            <span class="p">],</span>
+                            <span class="s2">&quot;em&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                <span class="s2">&quot;WonderWidgets&quot;</span>
+                            <span class="p">]</span>
+                        <span class="p">},</span>
+                        <span class="n">null</span><span class="p">,</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;#text&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                <span class="s2">&quot;Who  WonderWidgets&quot;</span>
+                            <span class="p">],</span>
+                            <span class="s2">&quot;em&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                <span class="s2">&quot;buys&quot;</span>
+                            <span class="p">]</span>
+                        <span class="p">}</span>
+                    <span class="p">],</span>
+                    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="s2">&quot;Overview&quot;</span>
+                    <span class="p">]</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <dl class="staticmethod">
 <dt id="gabbi_tools.content_handlers.XMLHandler.accepts">
 <em class="property">static </em><code class="descname">accepts</code><span class="sig-paren">(</span><em>content_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gabbi_tools/content_handlers.html#XMLHandler.accepts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gabbi_tools.content_handlers.XMLHandler.accepts" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Detect XML content from the content type header.</p>
+</dd></dl>
 
 <dl class="staticmethod">
 <dt id="gabbi_tools.content_handlers.XMLHandler.dumps">
 <em class="property">static </em><code class="descname">dumps</code><span class="sig-paren">(</span><em>data</em>, <em>pretty=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gabbi_tools/content_handlers.html#XMLHandler.dumps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gabbi_tools.content_handlers.XMLHandler.dumps" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Convert Python data structure into bytes.</p>
+</dd></dl>
 
 <dl class="staticmethod">
 <dt id="gabbi_tools.content_handlers.XMLHandler.loads">
 <em class="property">static </em><code class="descname">loads</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gabbi_tools/content_handlers.html#XMLHandler.loads"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gabbi_tools.content_handlers.XMLHandler.loads" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Parse bytes into Python data structure.</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="gabbi_tools.content_handlers.XMLHandler.test_key_suffix">
