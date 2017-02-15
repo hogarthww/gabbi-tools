@@ -25,8 +25,10 @@ class BodyResponseHandler(base.ResponseHandler):
         expected = test.replace_template(expected)
         msg = None
         if expected.startswith('<@'):
-            filename = expected[2:]
-            expected = test._load_data_file(filename)
+            filename = expected
+            # decode the input file, only if the test content was decoded
+            # i.e. if the content-type was considered non binary
+            expected = test._test_data_to_string(filename, test.content_type)
             msg = (
                 "Local file {} ({} bytes) doesn't match response body "
                 "({} bytes)").format(filename, len(expected), len(test.output))
